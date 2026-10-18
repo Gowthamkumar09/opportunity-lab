@@ -6,7 +6,7 @@
 
 **▶ Live demo:** https://gowthamkumar09.github.io/opportunity-lab/
 
-![OpportunityLab screenshot](docs/screenshot(1).png)
+![OpportunityLab screenshot](docs/Screenshot(1).png)
 
 ## Why this exists
 Most student founders pick an idea first and look for evidence later. OpportunityLab flips that: it helps you collect evidence, score ideas honestly, and reject weak ones early.
