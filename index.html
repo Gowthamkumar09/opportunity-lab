@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OpportunityLab</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--tx:#1c2330;--mu:#5d6676;--bd:#dfe3ea;--ac:#2457d6;--ok:#14794a;--wn:#a65f00;--er:#b3261e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151b;--card:#1b2029;--tx:#e8ecf3;--mu:#9aa4b5;--bd:#2c3340;--ac:#6b93ff;--ok:#4cc38a;--wn:#e0a040;--er:#ff7b72;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12151b;--card:#1b2029;--tx:#e8ecf3;--mu:#9aa4b5;--bd:#2c3340;--ac:#6b93ff;--ok:#4cc38a;--wn:#e0a040;--er:#ff7b72;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{padding:14px 16px;border-bottom:1px solid var(--bd);background:var(--card)}
+h1{font-size:20px;margin:0}h2{font-size:17px;margin:0 0 8px}h3{font-size:15px;margin:12px 0 4px}
+.sub{color:var(--mu);font-size:13px}
+nav{display:flex;gap:4px;overflow-x:auto;padding:8px 12px;background:var(--card);border-bottom:1px solid var(--bd)}
+nav button{white-space:nowrap}
+main{max-width:1000px;margin:0 auto;padding:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px;margin-bottom:12px}
+button{font:inherit;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:8px;padding:6px 12px;cursor:pointer}
+button.on,button.p{background:var(--ac);color:#fff;border-color:var(--ac)}
+input,select,textarea{font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:6px 8px;max-width:100%}
+textarea{width:100%;min-height:60px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:99px;border:1px solid var(--bd);color:var(--mu)}
+.sim{color:var(--wn);border-color:var(--wn)}.ver{color:var(--ok);border-color:var(--ok)}.unk{color:var(--er);border-color:var(--er)}
+.bar{height:8px;background:var(--bd);border-radius:5px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ac)}
+.big{font-size:34px;font-weight:700}
+.sc{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}td,th{border:1px solid var(--bd);padding:6px 8px;text-align:left;vertical-align:top}
+.empty{color:var(--mu);text-align:center;padding:24px}
+.warn{border-left:4px solid var(--wn);padding:8px 12px;background:var(--bg);margin-bottom:12px;font-size:13px}
+.ok{color:var(--ok)}.er{color:var(--er)}.wn{color:var(--wn)}
+</style></head><body>
+<header><h1>🔬 OpportunityLab</h1><div class="sub">Investigate startup ideas with evidence before you build. Data is saved only in this browser (localStorage), with no backup.</div></header>
+<nav id="nav"></nav><main id="app"></main>
+<script>
+const W={sev:['Severity & frequency',20],pay:['Willingness to pay',20],reach:['Ease of reaching customers',15],weak:['Weak existing solutions',15],feas:['Feasibility for a student',10],mkt:['Market size & expansion',10],moat:['Defensibility',10]};
+const IND=['agriculture','education','healthcare administration','logistics','manufacturing','finance','cybersecurity','retail','construction','other'];
+const GEO=['Andhra Pradesh','Telangana','India','Global'];
+const SEED=[
+['Farm input & price record-keeping','agriculture','Andhra Pradesh','Small farmers may lack a simple way to track input costs and sale prices across seasons.','Smallholder paddy/chilli farmers','Notebooks, memory, middlemen’s figures'],
+['Clinic appointment no-shows','healthcare administration','India','Small clinics may lose revenue to missed appointments and manual reminders.','Independent clinics, 1–5 doctors','Phone calls, WhatsApp, paper registers'],
+['Small-factory maintenance logs','manufacturing','Telangana','MSME workshops may record machine breakdowns on paper, so patterns are never analysed.','MSME manufacturers','Paper logbooks, tribal knowledge'],
+['Phishing awareness for small businesses','cybersecurity','India','Small firms may have no affordable staff security training or simulated-phishing checks.','Firms with 10–50 staff and no IT team','Nothing, or one-off talks'],
+['Kirana stock reorder tracking','retail','Andhra Pradesh','Neighbourhood shops may over- or under-stock without records of what sells.','Kirana store owners','Memory, supplier suggestions'],
+['Site material-delivery reconciliation','construction','India','Small contractors may struggle to match delivered materials to orders and bills.','Small building contractors','Delivery slips, phone photos']
+].map((a,i)=>({id:'s'+i,title:a[0],industry:a[1],geo:a[2],desc:a[3],cust:a[4],work:a[5],sim:true,s:{},log:[],d:{}}));
+let S=load();let view='discover',cur=null,F={q:'',ind:'',geo:''},cmp=[];
+function load(){try{const j=localStorage.getItem('olab');if(j)return JSON.parse(j)}catch(e){}return{opps:SEED}}
+function save(){try{localStorage.setItem('olab',JSON.stringify(S))}catch(e){}}
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function score(s){let t=0,miss=[],ev=0;for(const k in W){const c=s[k]||{};if(c.v===undefined||c.v===null||c.v==='')miss.push(W[k][0]);else t+=W[k][1]*Number(c.v)/10;if(c.ev&&c.ev.trim())ev++}return{total:Math.round(t),miss,ev,conf:ev>=6?'High':ev>=3?'Medium':'Low'}}
+function tests(){const full={},zero={};for(const k in W){full[k]={v:10};zero[k]={v:0}}
+const r=[['weights sum to 100',Object.values(W).reduce((a,b)=>a+b[1],0)===100],['all 10s → 100',score(full).total===100],['all 0s → 0',score(zero).total===0],['empty → 0 with 7 missing',score({}).total===0&&score({}).miss.length===7],['one criterion (sev 10) → 20',score({sev:{v:10}}).total===20],['confidence is Low with no evidence',score(full).conf==='Low']];return r}
+function opp(){return S.opps.find(o=>o.id===cur)}
+function go(v){view=v;render()}
+function pick(id){cur=id;go('score')}
+function render(){
+document.getElementById('nav').innerHTML=[['discover','Discover'],['score','Score'],['compare','Compare'],['validate','Validate'],['proto','Prototype'],['track','Tracker']].map(([k,l])=>`<button class="${view===k?'on':''}" onclick="go('${k}')">${l}</button>`).join('');
+const need=['score','validate','track'].includes(view)&&!opp();
+document.getElementById('app').innerHTML=need?'<div class="card empty">Select an opportunity in Discover first.</div>':V[view]();window.scrollTo(0,0)}
+const V={};
+V.discover=()=>{const l=S.opps.filter(o=>(!F.ind||o.industry===F.ind)&&(!F.geo||o.geo===F.geo)&&(!F.q||(o.title+o.desc+o.cust+o.industry).toLowerCase().includes(F.q.toLowerCase())));
+return `<div class="warn"><b>Simulated demonstration data.</b> The listed problems are starting hypotheses to investigate, not research findings. No web research is run in this version, so add your own evidence in Score and Tracker.</div>
+<div class="card"><div class="row"><input id="q" placeholder="Search industry, customer, problem" value="${esc(F.q)}" oninput="F.q=this.value;keepFocus()" style="flex:1;min-width:180px">
+<select onchange="F.ind=this.value;render()"><option value="">All industries</option>${IND.map(i=>`<option ${F.ind===i?'selected':''}>${i}</option>`).join('')}</select>
+<select onchange="F.geo=this.value;render()"><option value="">All geographies</option>${GEO.map(i=>`<option ${F.geo===i?'selected':''}>${i}</option>`).join('')}</select></div></div>
+${l.length?l.map(o=>{const sc=score(o.s);return `<div class="card"><div class="row"><h2 style="margin:0;flex:1">${esc(o.title)}</h2>${o.sim?'<span class="tag sim">simulated</span>':'<span class="tag">your entry</span>'}<span class="tag">${esc(o.industry)}</span><span class="tag">${esc(o.geo)}</span></div>
+<p style="margin:4px 0">${esc(o.desc)}</p><div class="sub"><b>Customer:</b> ${esc(o.cust)} · <b>Workaround:</b> ${esc(o.work)}</div>
+<div class="sub"><b>Severity/evidence:</b> ${o.s.sev&&o.s.sev.v!=null?'rated '+o.s.sev.v+'/10':'unrated'}, ${o.log.length} research note(s) · Score ${sc.total}/100 (${sc.conf} confidence)</div>
+<div class="row" style="margin-top:8px"><button class="p" onclick="pick('${o.id}')">Investigate</button><button onclick="del('${o.id}')">Delete</button></div></div>`}).join(''):'<div class="card empty">No opportunities match these filters.</div>'}
+<div class="card"><h2>Add your own opportunity</h2><div class="row"><input id="nt" placeholder="Problem title*"><select id="ni">${IND.map(i=>`<option>${i}</option>`).join('')}</select><select id="ng">${GEO.map(i=>`<option>${i}</option>`).join('')}</select></div>
+<input id="nc" placeholder="Target customer" style="width:100%;margin-bottom:8px"><textarea id="nd" placeholder="Describe the problem and today’s workaround"></textarea><button class="p" onclick="addOpp()" style="margin-top:8px">Add</button><div id="err" class="er"></div></div>`};
+function keepFocus(){render();const e=document.getElementById('q');e.focus();e.setSelectionRange(e.value.length,e.value.length)}
+function addOpp(){const t=nt.value.trim();if(t.length<5){err.textContent='Please enter a problem title (5+ characters).';return}
+S.opps.unshift({id:'u'+Date.now(),title:t,industry:ni.value,geo:ng.value,desc:nd.value.trim()||'(no description)',cust:nc.value.trim()||'(unspecified)',work:'(unknown)',sim:false,s:{},log:[],d:{}});save();render()}
+function del(id){if(confirm('Delete this opportunity and its notes?')){S.opps=S.opps.filter(o=>o.id!==id);cmp=cmp.filter(c=>c!==id);if(cur===id)cur=null;save();render()}}
+V.score=()=>{const o=opp(),sc=score(o.s),f=(k,l,ph)=>`<div class="row"><label style="flex:1;min-width:200px">${l}<br><input value="${esc(o.d[k]||'')}" placeholder="${ph}" onchange="opp().d['${k}']=this.value;save()" style="width:100%"></label></div>`;
+return `<h2>${esc(o.title)}</h2><div class="card"><div class="big">${sc.total}<span class="sub">/100</span></div><div class="sub">Confidence: <b>${sc.conf}</b> (${sc.ev}/7 criteria have written evidence)</div>
+${sc.miss.length?`<div class="wn" style="margin-top:6px">Missing: ${sc.miss.join(', ')} (counted as 0)</div>`:''}<div class="sub">Rate 0–10 only from evidence you gathered. Being AI-based or having a big theoretical market earns nothing by itself.</div></div>
+${Object.entries(W).map(([k,[l,w]])=>{const c=o.s[k]||{};return `<div class="card"><div class="row"><b style="flex:1">${l} (${w}%)</b><input type="number" min="0" max="10" step="1" style="width:70px" value="${c.v??''}" placeholder="0–10" onchange="setS('${k}',this.value)"></div><div class="bar"><i style="width:${(c.v||0)*10}%"></i></div><textarea placeholder="Evidence behind this score (interview, source, observation). Empty = unsupported." onchange="setE('${k}',this.value)">${esc(c.ev||'')}</textarea></div>`}).join('')}
+<div class="card"><h2>Comparison details</h2>${f('cost','Startup cost','e.g. ₹5k, estimate')}${f('time','Time to prototype','e.g. 3 weeks, estimate')}${f('acq','Customer acquisition difficulty','Low / Medium / High, and why')}${f('rev','Revenue model','e.g. monthly subscription per clinic')}${f('risk','Key risks','')}</div>
+<div class="card"><h2>Scoring self-test</h2>${tests().map(([n,p])=>`<div class="${p?'ok':'er'}">${p?'✔':'✘'} ${n}</div>`).join('')}</div>`};
+function setS(k,v){const o=opp();o.s[k]=o.s[k]||{};if(v===''){delete o.s[k].v}else{const n=Math.max(0,Math.min(10,Math.round(Number(v))));o.s[k].v=isNaN(n)?undefined:n}save();render()}
+function setE(k,v){const o=opp();o.s[k]=o.s[k]||{};o.s[k].ev=v;save();render()}
+V.compare=()=>{const cs=cmp.map(id=>S.opps.find(o=>o.id===id)).filter(Boolean);
+const rows=[['Problem severity',o=>o.s.sev&&o.s.sev.v!=null?o.s.sev.v+'/10':'unknown'],['Evidence quality',o=>score(o.s).conf+' ('+score(o.s).ev+'/7)'],['Competitor density',o=>{const n=o.log.filter(e=>e.t==='Competitor').length;return n?n+' logged':'unknown (none logged)'}],['Startup cost',o=>o.d.cost||'unknown'],['Time to prototype',o=>o.d.time||'unknown'],['Acquisition difficulty',o=>o.d.acq||'unknown'],['Revenue model',o=>o.d.rev||'unknown'],['Key risks',o=>o.d.risk||'unknown'],['Overall score',o=>'<b>'+score(o.s).total+'/100</b>']];
+return `<div class="card"><h2>Pick up to 5</h2><div class="row">${S.opps.map(o=>`<label><input type="checkbox" ${cmp.includes(o.id)?'checked':''} onchange="tog('${o.id}')"> ${esc(o.title)}</label>`).join('')}</div></div>
+${cs.length?`<div class="card sc"><table><tr><th></th>${cs.map(o=>`<th>${esc(o.title)}</th>`).join('')}</tr>${rows.map(([l,fn])=>`<tr><th>${l}</th>${cs.map(o=>`<td>${fn(o.d?o:o)==='unknown'?'<span class="unk">unknown</span>':(l==='Overall score'?fn(o):esc(fn(o)))}</td>`).join('')}</tr>`).join('')}</table></div>`:'<div class="card empty">Select at least one opportunity to compare.</div>'}`};
+function tog(id){cmp=cmp.includes(id)?cmp.filter(c=>c!==id):cmp.length<5?[...cmp,id]:(alert('Maximum 5.'),cmp);render()}
+V.validate=()=>{const o=opp(),c=o.cust;const Q=['Walk me through the last time you dealt with this. What happened?','How do you handle it today, step by step?','How often does it happen, and how long does it take each time?','What does it cost you (money, hours, mistakes) when it goes wrong?','What have you tried to fix it, and what happened?','What do you currently pay for, if anything, to handle this?','Who else is involved or decides about any change?','What would make you not change how you do this?','What happened the last time you tried a new tool or process?','If you could change one thing about this, what would it be, and why?'];
+return `<h2>${esc(o.title)}</h2><div class="card"><h3>Target customer profile</h3><p>${esc(c)} in ${esc(o.geo)} (${esc(o.industry)}) who experience the problem regularly and currently use: ${esc(o.work)}. Exclude friends and family; their answers are biased.</p>
+<h3>Ten neutral interview questions</h3><ol>${Q.map(q=>`<li>${q}</li>`).join('')}</ol><div class="sub">Do not pitch your idea. Ask about past behaviour, not future promises.</div></div>
+<div class="card"><h3>Plan: 10–15 interviews</h3><ol><li>List 30 reachable people (associations, local shops, college alumni, referrals).</li><li>Message 3× the number you need; aim for 10–15 completed 20-minute talks over 2–3 weeks.</li><li>Take notes in the Tracker the same day, quoting their words.</li><li>Measure per interviewee: time per occurrence, frequency, cost, errors, workaround steps.</li></ol>
+<h3>Experiments</h3><ul><li><b>Landing page / clickable demo:</b> describe the outcome and show a price. Track how many leave contact details out of how many visitors.</li><li><b>Paid pilot:</b> offer a manual or half-built service for a small fee for 30 days to 3–5 customers. A payment counts as stronger evidence than praise.</li></ul>
+<h3>Decision criteria (adjust before you start)</h3><ul><li class="ok"><b>Go:</b> 7+ of 10 interviewees describe the problem unprompted AND report real cost or time AND at least 2 agree to a paid pilot.</li><li class="wn"><b>Pivot:</b> the pain is real but a different customer, or a different part of the problem, is clearly stronger.</li><li class="er"><b>Stop:</b> fewer than 4 describe it as painful, or nobody will pay or commit time.</li></ul></div>`};
+const SAMPLE=[['R-101','Ravi','9876500001','Fever, follow-up'],['R-102','','9876500002','Check-up'],['R-103','Lakshmi','','Dental'],['R-101','Ravi','9876500001','Fever, follow-up'],['R-105','Suresh','98765','Skin rash'],['R-106','Anitha','9876500006','Blood test']];
+let proto=null;
+V.proto=()=>`<div class="warn"><b>Generic workflow demo, using simulated sample data.</b> It shows the intake → validate → result pattern with simple rules and no AI or backend. Change the rules in code to model a different idea.</div>
+<div class="card"><h2>Request intake triage</h2><div class="sub">Rules: ID, name and a 10-digit phone are required, and duplicate IDs are flagged.</div><div class="sc"><table><tr><th>ID</th><th>Name</th><th>Phone</th><th>Reason</th>${proto?'<th>Result</th>':''}</tr>${SAMPLE.map((r,i)=>`<tr>${r.map(x=>`<td>${esc(x)||'<span class="unk">missing</span>'}</td>`).join('')}${proto?`<td class="${proto[i][0]}">${proto[i][1]}</td>`:''}</tr>`).join('')}</table></div>
+<div class="row" style="margin-top:8px"><button class="p" onclick="runProto()">Process requests</button><button onclick="proto=null;render()">Reset</button></div>
+${proto?`<h3>Expected result</h3><p>${proto.filter(p=>p[0]==='ok').length} ready, ${proto.filter(p=>p[0]!=='ok').length} need attention. A person would have found these by hand; the demo shows how much checking time could be saved. Measure that with real customers.</p>`:''}</div>
+<div class="card"><h3>Limitations and error cases</h3><ul><li>Rules are hardcoded; real data is messier (typos, formats, languages).</li><li>No data is stored or sent anywhere.</li><li>It does not prove anyone will pay for it.</li></ul></div>`;
+function runProto(){const seen=new Set();proto=SAMPLE.map(r=>{const[id,n,p]=r;let m=[];if(!n)m.push('name missing');if(!/^\d{10}$/.test(p))m.push(p?'invalid phone':'phone missing');if(seen.has(id))m.push('duplicate ID');seen.add(id);return m.length?['er','✘ '+m.join(', ')]:['ok','✔ ready']});render()}
+const TY=['Interview note','Competitor','Assumption','Experiment result','Decision'],ST=['Verified','Hypothesis','Estimate','Unknown'];
+V.track=()=>{const o=opp();return `<h2>${esc(o.title)}</h2><div class="card"><div class="row"><select id="lt">${TY.map(t=>`<option>${t}</option>`).join('')}</select><select id="ls">${ST.map(t=>`<option ${t==='Hypothesis'?'selected':''}>${t}</option>`).join('')}</select></div>
+<textarea id="lx" placeholder="Note, competitor name + product + source link, assumption, result, or decision. Mark ‘Verified’ only with a source."></textarea><button class="p" style="margin-top:8px" onclick="addLog()">Save entry</button><div id="err" class="er"></div></div>
+${o.log.length?o.log.map((e,i)=>`<div class="card"><div class="row"><span class="tag">${e.t}</span><span class="tag ${e.st==='Verified'?'ver':e.st==='Unknown'?'unk':'sim'}">${e.st}</span><span class="sub" style="flex:1">${e.at}</span><button onclick="rmLog(${i})">Remove</button></div>${esc(e.x)}</div>`).join(''):'<div class="card empty">No notes yet. Competitor research isn’t automated here, so add findings manually and label how sure you are.</div>'}`};
+function addLog(){const x=lx.value.trim();if(x.length<3){err.textContent='Please write something first.';return}opp().log.unshift({t:lt.value,st:ls.value,x,at:new Date().toLocaleString()});save();render()}
+function rmLog(i){opp().log.splice(i,1);save();render()}
+render();
+</script></body></html>
