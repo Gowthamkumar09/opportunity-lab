@@ -1,110 +1,216 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>OpportunityLab</title>
+<title>OpportunityLab India: discover problems worth solving</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6f7f9;--card:#fff;--tx:#1c2330;--mu:#5d6676;--bd:#dfe3ea;--ac:#2457d6;--ok:#14794a;--wn:#a65f00;--er:#b3261e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151b;--card:#1b2029;--tx:#e8ecf3;--mu:#9aa4b5;--bd:#2c3340;--ac:#6b93ff;--ok:#4cc38a;--wn:#e0a040;--er:#ff7b72;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#12151b;--card:#1b2029;--tx:#e8ecf3;--mu:#9aa4b5;--bd:#2c3340;--ac:#6b93ff;--ok:#4cc38a;--wn:#e0a040;--er:#ff7b72;color-scheme:dark}
-*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-header{padding:14px 16px;border-bottom:1px solid var(--bd);background:var(--card)}
-h1{font-size:20px;margin:0}h2{font-size:17px;margin:0 0 8px}h3{font-size:15px;margin:12px 0 4px}
-.sub{color:var(--mu);font-size:13px}
-nav{display:flex;gap:4px;overflow-x:auto;padding:8px 12px;background:var(--card);border-bottom:1px solid var(--bd)}
-nav button{white-space:nowrap}
-main{max-width:1000px;margin:0 auto;padding:14px}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px;margin-bottom:12px}
-button{font:inherit;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:8px;padding:6px 12px;cursor:pointer}
-button.on,button.p{background:var(--ac);color:#fff;border-color:var(--ac)}
-input,select,textarea{font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:6px 8px;max-width:100%}
-textarea{width:100%;min-height:60px}
-.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
-.tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:99px;border:1px solid var(--bd);color:var(--mu)}
-.sim{color:var(--wn);border-color:var(--wn)}.ver{color:var(--ok);border-color:var(--ok)}.unk{color:var(--er);border-color:var(--er)}
-.bar{height:8px;background:var(--bd);border-radius:5px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ac)}
-.big{font-size:34px;font-weight:700}
-.sc{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}td,th{border:1px solid var(--bd);padding:6px 8px;text-align:left;vertical-align:top}
-.empty{color:var(--mu);text-align:center;padding:24px}
-.warn{border-left:4px solid var(--wn);padding:8px 12px;background:var(--bg);margin-bottom:12px;font-size:13px}
-.ok{color:var(--ok)}.er{color:var(--er)}.wn{color:var(--wn)}
+:root{--bg:#000;--tx:#fff;--mu:#a99cbd;--a:#9b2cff;--b:#e24bff;--g:rgba(10,4,18,.66);--bd:rgba(255,255,255,.17);--ok:#4cc38a;--wn:#e0a040;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:300 16px/1.6 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body.no3d{background:radial-gradient(circle at 50% 55%,#4a1380,#000 60%)}
+h1,h2,h3,.brand,.ctr,.big{font-family:"Space Grotesk",Inter,system-ui,sans-serif}
+#cv{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+#pg{position:fixed;top:0;left:0;height:2px;width:0;background:var(--a);z-index:20}
+section,.foot{position:relative;z-index:1}
+.top{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;gap:34px;padding:calc(24px + env(safe-area-inset-top,0px)) 6vw 36px;background:linear-gradient(#000 20%,transparent)}
+.brand{font-size:26px;font-weight:700;letter-spacing:-.03em;color:#fff;text-decoration:none}
+.top nav{display:flex;gap:24px;flex:1}.top a{color:#fff;text-decoration:none}.top nav a{font-size:15px;opacity:.85}.top nav a:hover{opacity:1}
+.join{text-decoration:underline!important;text-underline-offset:5px;font-size:17px}
+@media(max-width:760px){.top nav{display:none}.top{justify-content:space-between}.ctr{display:none}}
+.ctr{position:fixed;left:6vw;top:calc(115px + env(safe-area-inset-top,0px));z-index:5;font-size:15px;font-weight:500}
+@keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.hero{min-height:100vh;min-height:100svh}
+.hl{position:absolute;top:calc(110px + env(safe-area-inset-top,0px));left:22vw;right:6vw}
+.hl h1{font-size:clamp(30px,5.2vw,68px);line-height:.98;letter-spacing:-.035em;text-transform:uppercase;font-weight:500;margin:0;animation:up .9s cubic-bezier(.2,.7,.2,1) both}
+@media(max-width:760px){.hl{left:6vw}}
+.side{position:absolute;right:6vw;bottom:13vh;width:min(330px,88vw);animation:up .9s .3s cubic-bezier(.2,.7,.2,1) both}
+@media(max-width:760px){.side{left:6vw;right:auto;bottom:8vh}}
+.side h3{font-size:22px;font-weight:500;margin:0 0 8px}.side p{margin:0 0 18px;color:var(--mu);font-size:15px}
+.btn{display:inline-block;padding:13px 22px;border-radius:2px;background:var(--a);color:#fff;text-decoration:none;border:0;font:500 15px Inter,system-ui,sans-serif;cursor:pointer;transition:background .25s,transform .25s,box-shadow .25s}
+.btn:hover{background:var(--b);transform:translateY(-2px);box-shadow:0 10px 40px rgba(155,44,255,.55)}.btn.gh{background:transparent;border:1px solid var(--bd)}.btn.sm{padding:8px 14px;font-size:14px}
+.slide{min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:110px 5vw 90px}
+.glass,.card{background:var(--g);backdrop-filter:blur(14px);border:1px solid var(--bd);border-radius:6px}
+.glass{padding:clamp(22px,4vw,44px);max-width:760px;width:100%}
+.glass h2{font-size:clamp(26px,4.4vw,44px);line-height:1.08;margin:.4em 0 .5em;letter-spacing:-.025em;font-weight:500}
+.chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.chip{font:inherit;color:#fff;background:transparent;border:1px solid var(--bd);border-radius:3px;padding:12px 14px;text-align:left;cursor:pointer;transition:.2s}
+.chip:hover,.chip:focus-visible,.chip.sel,.chip.on{border-color:var(--b);background:rgba(155,44,255,.25);outline:0}
+.dots{display:flex;gap:6px}.dots i{width:28px;height:3px;background:var(--bd)}.dots i.on{background:var(--a)}
+.sum{font-size:clamp(18px,2.6vw,25px);line-height:1.4}.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.panel{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:0 6vw}
+.t{max-width:480px;background:var(--g);backdrop-filter:blur(12px);border:1px solid var(--bd);border-radius:6px;padding:24px;opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}.t.in{opacity:1;transform:none}
+.t b{display:block;font-family:"Space Grotesk",sans-serif;font-size:clamp(56px,9vw,92px);line-height:1;color:transparent;-webkit-text-stroke:1px var(--b);background:linear-gradient(var(--b),var(--b)) no-repeat 0 100%/100% calc(var(--pp,0)*100%);-webkit-background-clip:text;background-clip:text}
+.t h3{font-size:clamp(26px,3.6vw,38px);margin:.2em 0 .3em;line-height:1.1;font-weight:500}.t p{margin:0;color:var(--mu)}
+.lab{padding:16vh 6vw 8vh;background:linear-gradient(transparent,#000 14%)}
+.eyebrow{color:var(--mu);letter-spacing:.14em;text-transform:uppercase;font-size:13px;margin:0}
+.lab h2{font-size:clamp(32px,6vw,66px);line-height:1.02;letter-spacing:-.035em;margin:.1em 0 .2em;text-transform:uppercase;font-weight:500}
+.warn{border-left:3px solid var(--wn);padding:8px 14px;background:var(--g);font-size:13px;color:var(--mu);max-width:760px}
+input,select,textarea{font:inherit;color:#fff;background:rgba(255,255,255,.06);border:1px solid var(--bd);border-radius:3px;padding:9px 11px;max-width:100%}
+textarea{width:100%;min-height:54px}input[type=search]{flex:1;min-width:200px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin:20px 0}
+.card{padding:18px;display:flex;flex-direction:column;gap:8px}.card h3{margin:0;font-size:19px;font-weight:500;line-height:1.2}.card p{margin:0;color:var(--mu);font-size:14.5px}
+.tag{display:inline-block;font-size:12px;padding:1px 9px;border:1px solid var(--bd);border-radius:99px;color:var(--mu);margin-right:5px}.tag.h{color:var(--wn);border-color:var(--wn)}
+.card.new{animation:up .6s both;border-color:var(--b)}
+.pane{background:var(--g);backdrop-filter:blur(14px);border:1px solid var(--b);border-radius:6px;padding:clamp(16px,3vw,30px);margin:20px 0}
+.big{font-size:56px;font-weight:700;line-height:1}.crit{display:grid;grid-template-columns:1fr 80px;gap:8px;align-items:center;padding:10px 0;border-top:1px solid var(--bd)}
+.crit label{font-size:15px}.crit input[type=text]{grid-column:1/3}
+.bar{height:6px;background:var(--bd);margin:6px 0}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--a),var(--b))}
+.sticky{position:sticky;top:calc(70px + env(safe-area-inset-top,0px));background:#0a0412;border:1px solid var(--bd);padding:12px 16px;z-index:3;border-radius:4px}
+.note{border-top:1px solid var(--bd);padding:8px 0;font-size:14.5px}
+.rv{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}.rv.in{opacity:1;transform:none}
+.why{display:block;color:var(--mu);font-size:13px;line-height:1.45;margin:8px 0 0;max-width:420px}.cta{display:flex;flex-direction:column;align-items:flex-start;margin:4px 20px 4px 0}
+[data-why]{position:relative}
+[data-why]:hover::after,[data-why]:focus-visible::after{content:attr(data-why);position:absolute;top:calc(100% + 8px);left:0;width:230px;padding:9px 11px;border-radius:4px;background:#0c0414;border:1px solid var(--bd);color:#fff;font:400 13px/1.4 Inter,system-ui,sans-serif;text-align:left;text-decoration:none;z-index:30}
+.join[data-why]:hover::after{left:auto;right:0}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:24px 6vw calc(30px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--bd);color:var(--mu);font-size:14px;background:#000}.foot a{color:#fff}
+.ok{color:var(--ok)}.wn{color:var(--wn)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hl h1,.side,.card.new{animation:none}.t{opacity:1;transform:none;transition:none}.rv{opacity:1!important;transform:none!important;transition:none!important}}
 </style></head><body>
-<header><h1>🔬 OpportunityLab</h1><div class="sub">Investigate startup ideas with evidence before you build. Data is saved only in this browser (localStorage), with no backup.</div></header>
-<nav id="nav"></nav><main id="app"></main>
+<canvas id="cv" aria-hidden="true"></canvas><div id="pg"></div><div class="ctr" id="ctr">001/004</div>
+<header class="top"><a class="brand" href="#top">OpportunityLab.</a><nav><a href="#ask">Questions</a><a href="#story">Method</a><a href="#lab">India problems</a></nav><a class="join" href="#lab" data-why="Skip the story and explore real-world problems from across India.">Explore problems</a></header>
+
+<section class="hero" id="top">
+<div class="hl"><h1>Every great company starts with an itch.</h1></div>
+<div class="side"><h3>Find India’s next real problem.</h3><p>Discover problems across Indian farms, clinics, shops and factories. Score them on evidence and test them with real people before you build.</p><a class="btn" href="#ask">Find your itch →</a><small class="why">Why: four quick questions turn a vague frustration into a clear problem statement. About 30 seconds.</small></div>
+</section>
+
+<section id="ask" class="slide"><div id="qbox" class="glass"></div></section>
+
+<section id="story">
+<div class="panel"><div class="t"><b>01</b><h3>Find the itch.</h3><p>Start from a frustration you have seen up close, not a trend. It should be repeated, costly and annoying enough that people already complain.</p></div></div>
+<div class="panel"><div class="t"><b>02</b><h3>Understand the problem.</h3><p>Who exactly has it? How often? What do they do today, and what does it cost them in time, money and mistakes?</p></div></div>
+<div class="panel"><div class="t"><b>03</b><h3>Discover the opportunity.</h3><p>Look at what existing products miss. A gap is real only if the people in it are underserved and reachable.</p></div></div>
+<div class="panel"><div class="t"><b>04</b><h3>Test the evidence.</h3><p>Talk to 10–15 real people. Ask about the past, not the future. A payment is worth more than a compliment.</p></div></div>
+<div class="panel"><div class="t"><b>05</b><h3>Build what matters.</h3><p>Score ideas on seven weighted criteria, drop weak ones early, and build only what the evidence supports.</p></div></div>
+</section>
+
+<section class="lab" id="lab">
+<p class="eyebrow">The problem finder</p><h2>Discover India’s problems.</h2>
+<p class="warn"><b>Read this first:</b> these are curated starting hypotheses, not live research and not verified facts. The “Surface new problems” button reveals more from the list; it does not browse the web. Confirm each one by talking to real people.</p>
+<div class="row" id="regs"></div>
+<div class="row"><input type="search" id="q" placeholder="Search a sector, place or problem" aria-label="Search problems">
+<div class="cta"><button class="btn gh" id="more">Surface new problems ↻</button></div></div>
+<small class="why" id="moreWhy">Why: reveals three more India-wide problem hypotheses so you can compare them instead of falling for the first idea.</small>
+<div class="grid" id="grid"></div>
+<div class="pane" id="addbox"><h3 style="margin:0 0 10px;font-weight:500">Spotted a problem we missed? Add it.</h3>
+<div class="row" style="margin-top:0"><input id="nt" placeholder="Problem title*"><select id="nr"></select><input id="ns" placeholder="Sector (e.g. Fisheries)"></div>
+<textarea id="nd" placeholder="Who has this problem and what do they do today?"></textarea>
+<div class="cta" style="margin-top:10px"><button class="btn" id="add">Add to my list</button><small class="why">Why: the best problems come from people you know. Adding yours lets you score it the same way.</small></div><div id="err" class="wn"></div></div>
+<div id="pane"></div>
+</section>
+<footer class="foot"><span>OpportunityLab. · v0.2 prototype · built by Gowtham Kumar · data stays in your browser</span><a href="https://github.com/Gowthamkumar09/opportunity-lab" target="_blank" rel="noopener">View source on GitHub ↗</a></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-const W={sev:['Severity & frequency',20],pay:['Willingness to pay',20],reach:['Ease of reaching customers',15],weak:['Weak existing solutions',15],feas:['Feasibility for a student',10],mkt:['Market size & expansion',10],moat:['Defensibility',10]};
-const IND=['agriculture','education','healthcare administration','logistics','manufacturing','finance','cybersecurity','retail','construction','other'];
-const GEO=['Andhra Pradesh','Telangana','India','Global'];
-const SEED=[
-['Farm input & price record-keeping','agriculture','Andhra Pradesh','Small farmers may lack a simple way to track input costs and sale prices across seasons.','Smallholder paddy/chilli farmers','Notebooks, memory, middlemen’s figures'],
-['Clinic appointment no-shows','healthcare administration','India','Small clinics may lose revenue to missed appointments and manual reminders.','Independent clinics, 1–5 doctors','Phone calls, WhatsApp, paper registers'],
-['Small-factory maintenance logs','manufacturing','Telangana','MSME workshops may record machine breakdowns on paper, so patterns are never analysed.','MSME manufacturers','Paper logbooks, tribal knowledge'],
-['Phishing awareness for small businesses','cybersecurity','India','Small firms may have no affordable staff security training or simulated-phishing checks.','Firms with 10–50 staff and no IT team','Nothing, or one-off talks'],
-['Kirana stock reorder tracking','retail','Andhra Pradesh','Neighbourhood shops may over- or under-stock without records of what sells.','Kirana store owners','Memory, supplier suggestions'],
-['Site material-delivery reconciliation','construction','India','Small contractors may struggle to match delivered materials to orders and bills.','Small building contractors','Delivery slips, phone photos']
-].map((a,i)=>({id:'s'+i,title:a[0],industry:a[1],geo:a[2],desc:a[3],cust:a[4],work:a[5],sim:true,s:{},log:[],d:{}}));
-let S=load();let view='discover',cur=null,F={q:'',ind:'',geo:''},cmp=[];
-function load(){try{const j=localStorage.getItem('olab');if(j)return JSON.parse(j)}catch(e){}return{opps:SEED}}
-function save(){try{localStorage.setItem('olab',JSON.stringify(S))}catch(e){}}
+const $=s=>document.querySelector(s),reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-function score(s){let t=0,miss=[],ev=0;for(const k in W){const c=s[k]||{};if(c.v===undefined||c.v===null||c.v==='')miss.push(W[k][0]);else t+=W[k][1]*Number(c.v)/10;if(c.ev&&c.ev.trim())ev++}return{total:Math.round(t),miss,ev,conf:ev>=6?'High':ev>=3?'Medium':'Low'}}
-function tests(){const full={},zero={};for(const k in W){full[k]={v:10};zero[k]={v:0}}
-const r=[['weights sum to 100',Object.values(W).reduce((a,b)=>a+b[1],0)===100],['all 10s → 100',score(full).total===100],['all 0s → 0',score(zero).total===0],['empty → 0 with 7 missing',score({}).total===0&&score({}).miss.length===7],['one criterion (sev 10) → 20',score({sev:{v:10}}).total===20],['confidence is Low with no evidence',score(full).conf==='Low']];return r}
-function opp(){return S.opps.find(o=>o.id===cur)}
-function go(v){view=v;render()}
-function pick(id){cur=id;go('score')}
-function render(){
-document.getElementById('nav').innerHTML=[['discover','Discover'],['score','Score'],['compare','Compare'],['validate','Validate'],['proto','Prototype'],['track','Tracker']].map(([k,l])=>`<button class="${view===k?'on':''}" onclick="go('${k}')">${l}</button>`).join('');
-const need=['score','validate','track'].includes(view)&&!opp();
-document.getElementById('app').innerHTML=need?'<div class="card empty">Select an opportunity in Discover first.</div>':V[view]();window.scrollTo(0,0)}
-const V={};
-V.discover=()=>{const l=S.opps.filter(o=>(!F.ind||o.industry===F.ind)&&(!F.geo||o.geo===F.geo)&&(!F.q||(o.title+o.desc+o.cust+o.industry).toLowerCase().includes(F.q.toLowerCase())));
-return `<div class="warn"><b>Simulated demonstration data.</b> The listed problems are starting hypotheses to investigate, not research findings. No web research is run in this version, so add your own evidence in Score and Tracker.</div>
-<div class="card"><div class="row"><input id="q" placeholder="Search industry, customer, problem" value="${esc(F.q)}" oninput="F.q=this.value;keepFocus()" style="flex:1;min-width:180px">
-<select onchange="F.ind=this.value;render()"><option value="">All industries</option>${IND.map(i=>`<option ${F.ind===i?'selected':''}>${i}</option>`).join('')}</select>
-<select onchange="F.geo=this.value;render()"><option value="">All geographies</option>${GEO.map(i=>`<option ${F.geo===i?'selected':''}>${i}</option>`).join('')}</select></div></div>
-${l.length?l.map(o=>{const sc=score(o.s);return `<div class="card"><div class="row"><h2 style="margin:0;flex:1">${esc(o.title)}</h2>${o.sim?'<span class="tag sim">simulated</span>':'<span class="tag">your entry</span>'}<span class="tag">${esc(o.industry)}</span><span class="tag">${esc(o.geo)}</span></div>
-<p style="margin:4px 0">${esc(o.desc)}</p><div class="sub"><b>Customer:</b> ${esc(o.cust)} · <b>Workaround:</b> ${esc(o.work)}</div>
-<div class="sub"><b>Severity/evidence:</b> ${o.s.sev&&o.s.sev.v!=null?'rated '+o.s.sev.v+'/10':'unrated'}, ${o.log.length} research note(s) · Score ${sc.total}/100 (${sc.conf} confidence)</div>
-<div class="row" style="margin-top:8px"><button class="p" onclick="pick('${o.id}')">Investigate</button><button onclick="del('${o.id}')">Delete</button></div></div>`}).join(''):'<div class="card empty">No opportunities match these filters.</div>'}
-<div class="card"><h2>Add your own opportunity</h2><div class="row"><input id="nt" placeholder="Problem title*"><select id="ni">${IND.map(i=>`<option>${i}</option>`).join('')}</select><select id="ng">${GEO.map(i=>`<option>${i}</option>`).join('')}</select></div>
-<input id="nc" placeholder="Target customer" style="width:100%;margin-bottom:8px"><textarea id="nd" placeholder="Describe the problem and today’s workaround"></textarea><button class="p" onclick="addOpp()" style="margin-top:8px">Add</button><div id="err" class="er"></div></div>`};
-function keepFocus(){render();const e=document.getElementById('q');e.focus();e.setSelectionRange(e.value.length,e.value.length)}
-function addOpp(){const t=nt.value.trim();if(t.length<5){err.textContent='Please enter a problem title (5+ characters).';return}
-S.opps.unshift({id:'u'+Date.now(),title:t,industry:ni.value,geo:ng.value,desc:nd.value.trim()||'(no description)',cust:nc.value.trim()||'(unspecified)',work:'(unknown)',sim:false,s:{},log:[],d:{}});save();render()}
-function del(id){if(confirm('Delete this opportunity and its notes?')){S.opps=S.opps.filter(o=>o.id!==id);cmp=cmp.filter(c=>c!==id);if(cur===id)cur=null;save();render()}}
-V.score=()=>{const o=opp(),sc=score(o.s),f=(k,l,ph)=>`<div class="row"><label style="flex:1;min-width:200px">${l}<br><input value="${esc(o.d[k]||'')}" placeholder="${ph}" onchange="opp().d['${k}']=this.value;save()" style="width:100%"></label></div>`;
-return `<h2>${esc(o.title)}</h2><div class="card"><div class="big">${sc.total}<span class="sub">/100</span></div><div class="sub">Confidence: <b>${sc.conf}</b> (${sc.ev}/7 criteria have written evidence)</div>
-${sc.miss.length?`<div class="wn" style="margin-top:6px">Missing: ${sc.miss.join(', ')} (counted as 0)</div>`:''}<div class="sub">Rate 0–10 only from evidence you gathered. Being AI-based or having a big theoretical market earns nothing by itself.</div></div>
-${Object.entries(W).map(([k,[l,w]])=>{const c=o.s[k]||{};return `<div class="card"><div class="row"><b style="flex:1">${l} (${w}%)</b><input type="number" min="0" max="10" step="1" style="width:70px" value="${c.v??''}" placeholder="0–10" onchange="setS('${k}',this.value)"></div><div class="bar"><i style="width:${(c.v||0)*10}%"></i></div><textarea placeholder="Evidence behind this score (interview, source, observation). Empty = unsupported." onchange="setE('${k}',this.value)">${esc(c.ev||'')}</textarea></div>`}).join('')}
-<div class="card"><h2>Comparison details</h2>${f('cost','Startup cost','e.g. ₹5k, estimate')}${f('time','Time to prototype','e.g. 3 weeks, estimate')}${f('acq','Customer acquisition difficulty','Low / Medium / High, and why')}${f('rev','Revenue model','e.g. monthly subscription per clinic')}${f('risk','Key risks','')}</div>
-<div class="card"><h2>Scoring self-test</h2>${tests().map(([n,p])=>`<div class="${p?'ok':'er'}">${p?'✔':'✘'} ${n}</div>`).join('')}</div>`};
-function setS(k,v){const o=opp();o.s[k]=o.s[k]||{};if(v===''){delete o.s[k].v}else{const n=Math.max(0,Math.min(10,Math.round(Number(v))));o.s[k].v=isNaN(n)?undefined:n}save();render()}
-function setE(k,v){const o=opp();o.s[k]=o.s[k]||{};o.s[k].ev=v;save();render()}
-V.compare=()=>{const cs=cmp.map(id=>S.opps.find(o=>o.id===id)).filter(Boolean);
-const rows=[['Problem severity',o=>o.s.sev&&o.s.sev.v!=null?o.s.sev.v+'/10':'unknown'],['Evidence quality',o=>score(o.s).conf+' ('+score(o.s).ev+'/7)'],['Competitor density',o=>{const n=o.log.filter(e=>e.t==='Competitor').length;return n?n+' logged':'unknown (none logged)'}],['Startup cost',o=>o.d.cost||'unknown'],['Time to prototype',o=>o.d.time||'unknown'],['Acquisition difficulty',o=>o.d.acq||'unknown'],['Revenue model',o=>o.d.rev||'unknown'],['Key risks',o=>o.d.risk||'unknown'],['Overall score',o=>'<b>'+score(o.s).total+'/100</b>']];
-return `<div class="card"><h2>Pick up to 5</h2><div class="row">${S.opps.map(o=>`<label><input type="checkbox" ${cmp.includes(o.id)?'checked':''} onchange="tog('${o.id}')"> ${esc(o.title)}</label>`).join('')}</div></div>
-${cs.length?`<div class="card sc"><table><tr><th></th>${cs.map(o=>`<th>${esc(o.title)}</th>`).join('')}</tr>${rows.map(([l,fn])=>`<tr><th>${l}</th>${cs.map(o=>`<td>${fn(o.d?o:o)==='unknown'?'<span class="unk">unknown</span>':(l==='Overall score'?fn(o):esc(fn(o)))}</td>`).join('')}</tr>`).join('')}</table></div>`:'<div class="card empty">Select at least one opportunity to compare.</div>'}`};
-function tog(id){cmp=cmp.includes(id)?cmp.filter(c=>c!==id):cmp.length<5?[...cmp,id]:(alert('Maximum 5.'),cmp);render()}
-V.validate=()=>{const o=opp(),c=o.cust;const Q=['Walk me through the last time you dealt with this. What happened?','How do you handle it today, step by step?','How often does it happen, and how long does it take each time?','What does it cost you (money, hours, mistakes) when it goes wrong?','What have you tried to fix it, and what happened?','What do you currently pay for, if anything, to handle this?','Who else is involved or decides about any change?','What would make you not change how you do this?','What happened the last time you tried a new tool or process?','If you could change one thing about this, what would it be, and why?'];
-return `<h2>${esc(o.title)}</h2><div class="card"><h3>Target customer profile</h3><p>${esc(c)} in ${esc(o.geo)} (${esc(o.industry)}) who experience the problem regularly and currently use: ${esc(o.work)}. Exclude friends and family; their answers are biased.</p>
-<h3>Ten neutral interview questions</h3><ol>${Q.map(q=>`<li>${q}</li>`).join('')}</ol><div class="sub">Do not pitch your idea. Ask about past behaviour, not future promises.</div></div>
-<div class="card"><h3>Plan: 10–15 interviews</h3><ol><li>List 30 reachable people (associations, local shops, college alumni, referrals).</li><li>Message 3× the number you need; aim for 10–15 completed 20-minute talks over 2–3 weeks.</li><li>Take notes in the Tracker the same day, quoting their words.</li><li>Measure per interviewee: time per occurrence, frequency, cost, errors, workaround steps.</li></ol>
-<h3>Experiments</h3><ul><li><b>Landing page / clickable demo:</b> describe the outcome and show a price. Track how many leave contact details out of how many visitors.</li><li><b>Paid pilot:</b> offer a manual or half-built service for a small fee for 30 days to 3–5 customers. A payment counts as stronger evidence than praise.</li></ul>
-<h3>Decision criteria (adjust before you start)</h3><ul><li class="ok"><b>Go:</b> 7+ of 10 interviewees describe the problem unprompted AND report real cost or time AND at least 2 agree to a paid pilot.</li><li class="wn"><b>Pivot:</b> the pain is real but a different customer, or a different part of the problem, is clearly stronger.</li><li class="er"><b>Stop:</b> fewer than 4 describe it as painful, or nobody will pay or commit time.</li></ul></div>`};
-const SAMPLE=[['R-101','Ravi','9876500001','Fever, follow-up'],['R-102','','9876500002','Check-up'],['R-103','Lakshmi','','Dental'],['R-101','Ravi','9876500001','Fever, follow-up'],['R-105','Suresh','98765','Skin rash'],['R-106','Anitha','9876500006','Blood test']];
-let proto=null;
-V.proto=()=>`<div class="warn"><b>Generic workflow demo, using simulated sample data.</b> It shows the intake → validate → result pattern with simple rules and no AI or backend. Change the rules in code to model a different idea.</div>
-<div class="card"><h2>Request intake triage</h2><div class="sub">Rules: ID, name and a 10-digit phone are required, and duplicate IDs are flagged.</div><div class="sc"><table><tr><th>ID</th><th>Name</th><th>Phone</th><th>Reason</th>${proto?'<th>Result</th>':''}</tr>${SAMPLE.map((r,i)=>`<tr>${r.map(x=>`<td>${esc(x)||'<span class="unk">missing</span>'}</td>`).join('')}${proto?`<td class="${proto[i][0]}">${proto[i][1]}</td>`:''}</tr>`).join('')}</table></div>
-<div class="row" style="margin-top:8px"><button class="p" onclick="runProto()">Process requests</button><button onclick="proto=null;render()">Reset</button></div>
-${proto?`<h3>Expected result</h3><p>${proto.filter(p=>p[0]==='ok').length} ready, ${proto.filter(p=>p[0]!=='ok').length} need attention. A person would have found these by hand; the demo shows how much checking time could be saved. Measure that with real customers.</p>`:''}</div>
-<div class="card"><h3>Limitations and error cases</h3><ul><li>Rules are hardcoded; real data is messier (typos, formats, languages).</li><li>No data is stored or sent anywhere.</li><li>It does not prove anyone will pay for it.</li></ul></div>`;
-function runProto(){const seen=new Set();proto=SAMPLE.map(r=>{const[id,n,p]=r;let m=[];if(!n)m.push('name missing');if(!/^\d{10}$/.test(p))m.push(p?'invalid phone':'phone missing');if(seen.has(id))m.push('duplicate ID');seen.add(id);return m.length?['er','✘ '+m.join(', ')]:['ok','✔ ready']});render()}
-const TY=['Interview note','Competitor','Assumption','Experiment result','Decision'],ST=['Verified','Hypothesis','Estimate','Unknown'];
-V.track=()=>{const o=opp();return `<h2>${esc(o.title)}</h2><div class="card"><div class="row"><select id="lt">${TY.map(t=>`<option>${t}</option>`).join('')}</select><select id="ls">${ST.map(t=>`<option ${t==='Hypothesis'?'selected':''}>${t}</option>`).join('')}</select></div>
-<textarea id="lx" placeholder="Note, competitor name + product + source link, assumption, result, or decision. Mark ‘Verified’ only with a source."></textarea><button class="p" style="margin-top:8px" onclick="addLog()">Save entry</button><div id="err" class="er"></div></div>
-${o.log.length?o.log.map((e,i)=>`<div class="card"><div class="row"><span class="tag">${e.t}</span><span class="tag ${e.st==='Verified'?'ver':e.st==='Unknown'?'unk':'sim'}">${e.st}</span><span class="sub" style="flex:1">${e.at}</span><button onclick="rmLog(${i})">Remove</button></div>${esc(e.x)}</div>`).join(''):'<div class="card empty">No notes yet. Competitor research isn’t automated here, so add findings manually and label how sure you are.</div>'}`};
-function addLog(){const x=lx.value.trim();if(x.length<3){err.textContent='Please write something first.';return}opp().log.unshift({t:lt.value,st:ls.value,x,at:new Date().toLocaleString()});save();render()}
-function rmLog(i){opp().log.splice(i,1);save();render()}
-render();
+const W={sev:['Severity & frequency',20],pay:['Willingness to pay',20],reach:['Ease of reaching customers',15],weak:['Weak existing solutions',15],feas:['Feasibility for a student',10],mkt:['Market size & expansion',10],moat:['Defensibility',10]};
+const score=r=>{let t=0,miss=[],ev=0;for(const k in W){const c=r[k]||{};if(c.v===undefined||c.v==='')miss.push(W[k][0]);else t+=W[k][1]*c.v/10;if(c.e&&c.e.trim())ev++}return{total:Math.round(t),miss,conf:ev>=6?'High':ev>=3?'Medium':'Low',ev}};
+const REG=['All','Andhra Pradesh','Telangana','Tamil Nadu','Karnataka','Maharashtra','Uttar Pradesh','All-India'];
+const BANK=[
+['Farm input and price records','Agriculture','Andhra Pradesh','Small farmers may lack simple records of input costs and sale prices across seasons.','Notebooks, memory, middlemen’s figures'],
+['Clinic appointment no-shows','Healthcare','All-India','Small clinics may lose income to missed appointments and manual reminders.','Phone calls, WhatsApp, paper registers'],
+['Machine breakdown logs in small factories','Manufacturing','Telangana','Workshops may note breakdowns on paper, so repeating faults are never analysed.','Paper logbooks, tribal knowledge'],
+['Kirana stock reordering','Retail','Andhra Pradesh','Neighbourhood shops may over- or under-stock without records of what sells.','Memory, supplier suggestions'],
+['UPI fraud awareness for small shops','Cybersecurity','All-India','Shopkeepers may be unsure how to spot fake payment screenshots and scam calls.','Word of mouth, nothing formal'],
+['GST invoice mistakes at small wholesalers','Finance','Andhra Pradesh','Small traders may make invoice and tax-entry errors that surface only at filing time.','Accountant visits, spreadsheets'],
+['Same-day crop price discovery','Agriculture','Telangana','Farmers may not know fair prices across nearby markets on the day they sell.','Calls to relatives and traders'],
+['Medicine stock-outs at small pharmacies','Healthcare','Karnataka','Independent pharmacies may run out of fast-moving medicines without warning.','Manual counts, distributor calls'],
+['Empty return trips for small truck owners','Logistics','All-India','Owner-drivers may travel back empty because finding return loads is slow.','Brokers, phone networks'],
+['Local-language exam practice for rural students','Education','Uttar Pradesh','Students may lack quality practice material in their own language.','Guide books, coaching notes'],
+['Weather and price alerts for fishermen','Fisheries','Andhra Pradesh','Small boat owners may lack timely, trusted alerts on weather and landing prices.','Radio, fellow fishermen'],
+['Direct buyers for handloom weavers','Textiles','Tamil Nadu','Weavers may depend on a few middlemen to reach buyers and set prices.','Local traders, exhibitions'],
+['Rent collection and records for hostels and PGs','Real estate','Karnataka','Small owners may chase rent and track deposits by hand.','Notebooks, WhatsApp reminders'],
+['Material delivery matching on building sites','Construction','Maharashtra','Contractors may struggle to match deliveries to orders and bills.','Delivery slips, phone photos'],
+['Government scheme eligibility confusion','Governance','All-India','Families may not know which schemes they qualify for or how to apply.','Local agents, officials'],
+['Water-tanker booking and scheduling','Utilities','Maharashtra','Households may struggle to book tankers reliably when supply is short.','Phone calls to suppliers'],
+['Fee collection and parent updates for small schools','Education','Telangana','Small schools may handle fees and parent communication on paper and phone.','Registers, group chats'],
+['Event vendor coordination for weddings','Services','All-India','Families may juggle many vendors with no shared plan or payment tracking.','Calls, notebooks, relatives']
+].map((a,i)=>({id:'b'+i,t:a[0],s:a[1],r:a[2],d:a[3],w:a[4]}));
+let S={shown:6,added:[],d:{},reg:'All',q:'',sel:null};
+try{const j=localStorage.getItem('olab-india');if(j)S=Object.assign(S,JSON.parse(j),{reg:'All',q:'',sel:null})}catch(e){}
+const save=()=>{try{localStorage.setItem('olab-india',JSON.stringify({shown:S.shown,added:S.added,d:S.d}))}catch(e){}};
+const all=()=>[...S.added,...BANK.slice(0,S.shown)];
+const dat=id=>S.d[id]=S.d[id]||{r:{},n:[]};
+function regs(){$('#regs').innerHTML=REG.map(r=>`<button class="chip ${S.reg===r?'on':''}" data-r="${r}">${r}</button>`).join('');document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{S.reg=b.dataset.r;regs();grid()})}
+function grid(newFrom){const q=S.q.toLowerCase(),l=all().filter(p=>(S.reg==='All'||p.r===S.reg)&&(!q||(p.t+p.s+p.r+p.d).toLowerCase().includes(q)));
+$('#grid').innerHTML=l.length?l.map((p,i)=>{const sc=score(dat(p.id).r);return `<div class="card ${newFrom!==undefined&&all().indexOf(p)>=newFrom?'new':''}"><div><span class="tag">${esc(p.s)}</span><span class="tag">${esc(p.r)}</span><span class="tag h">${p.id[0]==='u'?'your entry':'hypothesis'}</span></div><h3>${esc(p.t)}</h3><p>${esc(p.d)}</p><p><b>Today:</b> ${esc(p.w)}</p><p>Score: ${sc.total}/100 · ${sc.conf} confidence</p><div><button class="btn sm" data-p="${p.id}" data-why="Rate it on seven criteria, write evidence, and see an honest score.">Investigate →</button></div></div>`}).join(''):'<p class="warn">Nothing matches. Try another region, or add your own problem below.</p>';
+document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>pane(b.dataset.p));
+const m=$('#more');m.disabled=S.shown>=BANK.length;m.textContent=m.disabled?'All hypotheses surfaced ✓':'Surface new problems ↻'}
+function pane(id){S.sel=id;const p=all().find(x=>x.id===id),d=dat(id);
+$('#pane').innerHTML=`<div class="pane"><h3 style="margin:0;font-weight:500;font-size:26px">${esc(p.t)}</h3><p class="why" style="max-width:none">${esc(p.d)} Rate only from evidence you gathered; unrated criteria count as 0, so missing evidence can never inflate the score.</p>
+<div class="sticky" id="sc"></div>${Object.entries(W).map(([k,[l,w]])=>{const c=d.r[k]||{};return `<div class="crit"><label>${l} (${w}%)</label><input type="number" min="0" max="10" step="1" placeholder="0–10" value="${c.v??''}" data-k="${k}" data-f="v" aria-label="${l} score"><input type="text" placeholder="Evidence (interview, source, observation)" value="${esc(c.e||'')}" data-k="${k}" data-f="e"></div>`}).join('')}
+<h3 style="font-weight:500;margin:20px 0 6px">Research notes</h3><div class="row" style="margin-top:0"><select id="nty"><option>Interview note</option><option>Competitor finding</option><option>Assumption</option><option>Experiment result</option></select><select id="nst"><option>Hypothesis</option><option>Verified</option><option>Estimate</option><option>Unknown</option></select></div><textarea id="ntx" placeholder="Write what you learned. Mark Verified only with a source."></textarea>
+<div class="cta" style="margin-top:8px"><button class="btn sm" id="addn">Save note</button><small class="why">Why: a decision is only as good as the evidence trail behind it.</small></div><div id="notes"></div>
+<h3 style="font-weight:500;margin:20px 0 6px">Next step</h3><p style="color:var(--mu);margin:0">Interview 10–15 ${esc(p.s.toLowerCase())} customers in ${esc(p.r)}. Ask how they handle this today, what it costs them, and what they have tried. Do not pitch. Then offer a small paid pilot to 2–3 of them.</p></div>`;
+document.querySelectorAll('[data-k]').forEach(i=>i.oninput=()=>{const c=d.r[i.dataset.k]=d.r[i.dataset.k]||{};if(i.dataset.f==='v'){i.value===''?delete c.v:c.v=Math.max(0,Math.min(10,Math.round(+i.value)||0))}else c.e=i.value;save();scoreUI()});
+$('#addn').onclick=()=>{const x=$('#ntx').value.trim();if(x.length<3)return;d.n.unshift({t:$('#nty').value,s:$('#nst').value,x,at:new Date().toLocaleDateString('en-IN')});$('#ntx').value='';save();notes()};
+scoreUI();notes();$('#pane').scrollIntoView({behavior:reduce?'auto':'smooth'})}
+function scoreUI(){const d=dat(S.sel),s=score(d.r);$('#sc').innerHTML=`<div class="big">${s.total}<span style="font-size:18px;color:var(--mu)">/100</span></div><div class="bar"><i style="width:${s.total}%"></i></div><small>Confidence: <b>${s.conf}</b> (${s.ev}/7 criteria have evidence)${s.miss.length?` · <span class="wn">Missing: ${s.miss.join(', ')}</span>`:''}</small>`;grid()}
+function notes(){const d=dat(S.sel);$('#notes').innerHTML=d.n.length?d.n.map((n,i)=>`<div class="note"><span class="tag">${esc(n.t)}</span><span class="tag ${n.s==='Verified'?'ok':'h'}">${esc(n.s)}</span> <small>${n.at}</small> <button class="chip" style="padding:2px 8px" data-x="${i}">Remove</button><br>${esc(n.x)}</div>`).join(''):'<p class="why">No notes yet.</p>';document.querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>{d.n.splice(+b.dataset.x,1);save();notes()})}
+$('#more').onclick=()=>{const from=all().length;S.shown=Math.min(BANK.length,S.shown+3);save();S.reg='All';S.q='';$('#q').value='';regs();grid(from)};
+$('#q').oninput=e=>{S.q=e.target.value;grid()};
+$('#nr').innerHTML=REG.slice(1).map(r=>`<option>${r}</option>`).join('');
+$('#add').onclick=()=>{const t=$('#nt').value.trim();if(t.length<5){$('#err').textContent='Please enter a problem title (5+ characters).';return}$('#err').textContent='';
+S.added.unshift({id:'u'+Date.now(),t,s:$('#ns').value.trim()||'Other',r:$('#nr').value,d:$('#nd').value.trim()||'(no description)',w:'(unknown, find out)'});$('#nt').value=$('#nd').value='';save();grid(0)};
+regs();grid();
+/* questions */
+const Q=[{q:'What keeps frustrating the people around you?',o:['Paperwork and records','Waiting and missed appointments','Money and payments','Safety and security']},
+{q:'Who is struggling with it most?',o:['Small farmers','Clinics and hospitals','Small shops and businesses','Students and families']},
+{q:'Why haven’t existing tools fixed it?',o:['Too expensive','Too complicated','Not in Telugu or local languages','Nobody asked the users']},
+{q:'Would someone pay to make it disappear?',o:['Yes, they already pay','Maybe, I haven’t checked','I don’t know yet']}];
+const WHY=['Real businesses start from a frustration you have seen up close, not from a trend.','Naming one specific group keeps the idea testable and reachable.','If tools already exist but fail, that gap is worth investigating.','Willingness to pay is the strongest early sign, so we ask it honestly.'];
+let qi=0,busy=false;const ans=[];
+function drawQ(){const b=$('#qbox'),dots=`<div class="dots">${Q.map((_,i)=>`<i class="${i<=qi?'on':''}"></i>`).join('')}</div>`;
+if(qi>=Q.length){const un=ans[3]!=Q[3].o[0];
+b.innerHTML=`${dots}<h2>Your itch, in one sentence</h2><p class="sum">${ans[1]} struggle with ${ans[0].toLowerCase()}. Existing tools fall short: ${ans[2].toLowerCase()}. Would they pay? ${ans[3]}.</p><p>${un?'An honest answer, and exactly what interviews and notes are for: turning a guess into evidence.':'A strong start, but it is still a belief until a real customer pays. Test it before you build.'}</p><div class="row"><div class="cta"><a class="btn" href="#lab">Find similar problems →</a><small class="why">Why: see India-wide problems like yours and score them side by side.</small></div><div class="cta"><a class="btn gh" href="#story">Keep scrolling ↓</a><small class="why">Why: see how evidence turns an itch into a decision.</small></div><div class="cta"><button class="chip" id="again" data-why="Clear your answers and try a different itch.">Start over</button></div></div>`;
+$('#again').onclick=()=>{qi=0;ans.length=0;drawQ()};return}
+b.innerHTML=`${dots}<h2>${Q[qi].q}</h2><p class="why">Why we ask: ${WHY[qi]}</p><div class="chips">${Q[qi].o.map((o,i)=>`<button class="chip" data-i="${i}">${o}</button>`).join('')}</div>${qi?'<div class="row"><button class="chip" id="back" data-why="Go back and change your previous answer.">← Back</button></div>':''}`;
+b.querySelectorAll('[data-i]').forEach(c=>c.onclick=()=>{if(busy)return;busy=true;c.classList.add('sel');ans[qi]=Q[qi].o[c.dataset.i];setTimeout(()=>{busy=false;qi++;drawQ()},reduce?0:240)});
+if($('#back'))$('#back').onclick=()=>{qi--;drawQ()}}
+drawQ();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');setTimeout(()=>e.target.style.setProperty('--d','0s'),1400)}}),{threshold:.15});
+document.querySelectorAll('.lab>*,.glass,.foot').forEach((x,i)=>{x.classList.add('rv');x.style.setProperty('--d',(i%3)*.08+'s')});
+document.querySelectorAll('.t,.rv').forEach(t=>io.observe(t));
+const pg=$('#pg'),hl=$('.hl'),TT=[...document.querySelectorAll('.t')],SEC=['#top','#ask','#story','#lab'].map($);
+function bar(){pg.style.width=scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)*100+'%';
+if(!reduce){hl.style.transform='translateY('+(-scrollY*.25)+'px)';hl.style.opacity=Math.max(0,1-scrollY/(innerHeight*.6))}
+$('#ctr').textContent='00'+SEC.filter(s=>s.getBoundingClientRect().top<innerHeight*.5).length+'/004';
+TT.forEach(t=>{const r=t.getBoundingClientRect();t.style.setProperty('--pp',Math.min(1,Math.max(0,(innerHeight*.9-r.top)/(innerHeight*.6))))})}
+addEventListener('scroll',bar,{passive:true});bar();
+/* 3D: particle cloud that morphs from chaos to order around a glowing orb with glass beads */
+const prog=()=>{const s=$('#story'),h=s.offsetHeight-innerHeight;return h<=0?0:Math.min(1,Math.max(0,(scrollY-s.offsetTop)/h))};
+const lerpKF=(K,p)=>{for(let i=1;i<K.length;i++)if(p<=K[i][0]){const a=K[i-1],b=K[i];return a[1]+(b[1]-a[1])*(p-a[0])/(b[0]-a[0])}return K[K.length-1][1]};
+const KD=[[0,.16],[.2,.6],[.5,.35],[.8,.12],[1,.1]],KO=[[0,.9],[.2,0],[.5,.4],[.8,1],[1,1]];
+let R;try{R=new THREE.WebGLRenderer({canvas:$('#cv'),antialias:true,alpha:true})}catch(e){document.body.classList.add('no3d')}
+if(R){
+const sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(45,1,.1,100),U={t:{value:0},d:{value:.16},m:{value:0}};
+const orb=new THREE.Mesh(new THREE.IcosahedronGeometry(1.4,5),new THREE.ShaderMaterial({uniforms:U,transparent:true,
+vertexShader:'uniform float t,d;varying vec3 n;float h(vec3 p){return sin(p.x*2.1+t)*sin(p.y*2.3-t*.8)*sin(p.z*1.9+t*.6);}void main(){vec3 p=position+normal*h(position)*d;n=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(p,1.);}',
+fragmentShader:'uniform float t,m;varying vec3 n;void main(){vec3 N=normalize(n);float f=pow(1.-abs(N.z),2.2),c=pow(max(N.z,0.),4.),a=atan(N.y,N.x),s=pow(abs(sin(a*22.+t*.4)),5.);vec3 deep=mix(vec3(.3,.05,.58),vec3(.5,.1,.85),m),mag=vec3(.95,.3,1.);vec3 col=mix(deep,mag,f*.9+s*.3*(1.-N.z))+vec3(1.)*c*(.3+.7*s);gl_FragColor=vec4(col,.55+.45*f+.3*c);}'}));
+const N=innerWidth<700?700:1400,chaos=new Float32Array(N*3),order=new Float32Array(N*3),pos=new Float32Array(N*3);
+for(let i=0;i<N;i++){const r=3+Math.random()*3.5,u=Math.random()*2-1,a=Math.random()*6.283,s=Math.sqrt(1-u*u);chaos.set([r*s*Math.cos(a),r*u,r*s*Math.sin(a)],i*3);
+const y=1-i/(N-1)*2,d=Math.sqrt(1-y*y),th=i*2.39996;order.set([2.1*d*Math.cos(th),2.1*y,2.1*d*Math.sin(th)],i*3)}
+const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+const cn=document.createElement('canvas');cn.width=cn.height=64;const cx=cn.getContext('2d'),gr=cx.createRadialGradient(32,32,0,32,32,32);gr.addColorStop(0,'rgba(255,255,255,1)');gr.addColorStop(.35,'rgba(255,255,255,.45)');gr.addColorStop(1,'rgba(255,255,255,0)');cx.fillStyle=gr;cx.fillRect(0,0,64,64);
+const pm=new THREE.PointsMaterial({size:.085,map:new THREE.CanvasTexture(cn),transparent:true,opacity:.9,blending:THREE.AdditiveBlending,depthWrite:false});
+const ring=new THREE.Group(),lm=new THREE.MeshBasicMaterial({color:0xd9b8ff,transparent:true,opacity:.5}),beads=[];
+for(let j=0;j<5;j++)ring.add(new THREE.Mesh(new THREE.TorusGeometry(2.6+j*.07,.011,8,220),lm));
+const bm=new THREE.MeshPhongMaterial({color:0xefe0ff,shininess:140,specular:0xffffff,transparent:true,opacity:.88});
+for(let i=0;i<16;i++){const m=new THREE.Mesh(new THREE.SphereGeometry(.07+Math.random()*.07,20,20),bm);m.userData={r:2.6+(i%5)*.07,a:Math.random()*6.283,v:.12+Math.random()*.1};beads.push(m);ring.add(m)}
+ring.rotation.set(1.25,0,-.32);
+const grp=new THREE.Group();grp.add(orb,new THREE.Points(geo,pm),ring);sc.add(grp,new THREE.AmbientLight(0x8844ff,.7));
+const l1=new THREE.PointLight(0xffffff,1.3);l1.position.set(3,3,5);const l2=new THREE.PointLight(0xc040ff,1.6);l2.position.set(-3,-2,3);sc.add(l1,l2);
+let px=0,mx=0,my=0,t=0,ks=.9;
+function size(){R.setPixelRatio(Math.min(devicePixelRatio,2));R.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();cam.position.z=innerWidth<760?10:7.4}
+function frame(){const p=prog(),s=$('#story'),inS=innerWidth>900&&scrollY>s.offsetTop-innerHeight*.5&&scrollY<s.offsetTop+s.offsetHeight-innerHeight*.5;
+if(reduce){ks=lerpKF(KO,p);U.d.value=lerpKF(KD,p);px=inS?2:0}else{t+=.012;ks+=(lerpKF(KO,p)-ks)*.07;U.d.value+=(lerpKF(KD,p)-U.d.value)*.06;px+=((inS?2:0)-px)*.05}
+U.t.value=t;U.m.value=p;for(let i=0;i<N*3;i++)pos[i]=chaos[i]+(order[i]-chaos[i])*ks;geo.attributes.position.needsUpdate=true;
+beads.forEach(b=>{const u=b.userData;if(!reduce)u.a+=u.v*.016;b.position.set(Math.cos(u.a)*u.r,Math.sin(u.a)*u.r,0)});
+pm.color.setHSL(.78-.06*p,.9,.7);grp.position.set(px,innerWidth<760?-.5:-.3,0);grp.rotation.y=mx*.3+p*1.2+t*.15;grp.rotation.x=my*.15+p*.4;
+R.render(sc,cam);if(!reduce)requestAnimationFrame(frame)}
+addEventListener('resize',()=>{size();if(reduce)frame()});
+addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+if(reduce)addEventListener('scroll',frame,{passive:true});
+size();frame()}
 </script></body></html>
